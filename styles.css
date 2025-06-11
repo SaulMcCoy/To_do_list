@@ -1,7 +1,30 @@
+.grocery{
+    background-color: black;
+    color: white;
+    width: 300px; /*How close the dots will be near the words*/
+    border: 20px solid blue;
+    padding: 25px;
+    margin: auto;
+    
+}
+
+
+.games{
+    background-color: black;
+    color:whitesmoke;
+    width: 300px;
+    border: 20px solid red; /*Solid makes is visable and px is the thickness*/
+    padding: 25px;/*How close one object is to another.*/
+    margin: auto; /*How far it is left most a screen, auto centers it.*/
+
+
+}
+
 h1{
     color: green;
 }
 
-li{
+/* li{
     color: blue;
-}
+} */
+

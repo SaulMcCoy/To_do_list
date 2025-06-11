@@ -6,19 +6,21 @@
 </head>
 
 <body>
+    <div class="grocery">
     <h1>Todo List</h1>
     <ul>
-        <b>Grocerie list</b> 
+        <b>Grocery list</b> 
         <li>Apples</li>
         <li>Milk</li>
         <li>Bread</li>
     </ul>
     <!--This will put Enter item inside of the input value -->
-    <input placeholder="Enter Item">
-    <button>Submit</button>
-
+    <input id="task_input" placeholder="Enter Item">
+    <button id="Submit">Submit</button>
+    </div>
     
-    <h1 style="">Todo List</h1>
+    <div class="games">
+    <h1>Todo List</h1>
     <ul>
         <b>Game shopping list</b> 
         <li>Expedition 33</li>
@@ -28,6 +30,15 @@
     <!--This will put Enter item inside of the input value -->
     <input placeholder="Enter Game">
     <button>Submit</button>
+    </div>
 
+    <script>
+        document.getElementById("Submit").addEventListener('click',function(){
+            value = document.getElementById("task_input").value
+            alert("You typed " + value);
+        })
+    </script>
+
+    
 </body>
 </html>
