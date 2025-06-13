@@ -8,7 +8,7 @@
 <body>
     <div class="grocery">
     <h1>Todo List</h1>
-    <ul>
+    <ul id="my_list">
         <b>Grocery list</b> 
         <li>Apples</li>
         <li>Milk</li>
@@ -33,10 +33,26 @@
     </div>
 
     <script>
+        //Takes element my id name and stores onto the ul 
+        const myList = document.getElementById("my_list");
+        //Creates a new li
+        const newItem = document.createElement('li');
+        const listItemOutput = document.createTextNode(  " Has been added to your list");
+            
+
         document.getElementById("Submit").addEventListener('click',function(){
+            //Lets me know what was typed inside of the enter item section
             value = document.getElementById("task_input").value
             alert("You typed " + value);
+
+            newItem.appendChild(listItemOutput);// adds text content to the list item  
+            myList.appendChild(newItem); // Adds a new item to the unordered list
+
+            input.value = '';
         })
+        
+       
+        
     </script>
 
     
