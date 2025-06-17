@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <link rel="stylesheet" href="styles.css">
     <title>My todo list</title>
@@ -7,54 +8,66 @@
 
 <body>
     <div class="grocery">
-    <h1>Todo List</h1>
-    <ul id="my_list">
-        <b>Grocery list</b> 
-        <li>Apples</li>
-        <li>Milk</li>
-        <li>Bread</li>
-    </ul>
-    <!--This will put Enter item inside of the input value -->
-    <input id="task_input" placeholder="Enter Item">
-    <button id="Submit">Submit</button>
+        <h1>Todo List</h1>
+        <ul id="my_list">
+            <b>Grocery list</b>
+            <li>Apples</li>
+            <li>Milk</li>
+            <li>Bread</li>
+            <!-- <button id="Delete">Delete</button> -->
+        </ul>
+        <!--This will put Enter item inside of the input value -->
+        <input id="task_input" placeholder="Enter Item">
+        <button id="Submit">Submit</button>
     </div>
-    
+
     <div class="games">
-    <h1>Todo List</h1>
-    <ul>
-        <b>Game shopping list</b> 
-        <li>Expedition 33</li>
-        <li>Persona 5</li>
-        <li>Elden ring</li>
-    </ul>
-    <!--This will put Enter item inside of the input value -->
-    <input placeholder="Enter Game">
-    <button>Submit</button>
+        <h1>Todo List</h1>
+        <ul>
+            <b>Game shopping list</b>
+            <li>Expedition 33</li>
+            <li>Persona 5</li>
+            <li>Elden ring</li>
+        </ul>
+        <!--This will put Enter item inside of the input value -->
+        <input placeholder="Enter Game">
+        <button>Submit</button>
     </div>
 
     <script>
-        //Takes element my id name and stores onto the ul 
-        const myList = document.getElementById("my_list");
-        //Creates a new li
-        const newItem = document.createElement('li');
-        const listItemOutput = document.createTextNode(  " Has been added to your list");
-            
 
-        document.getElementById("Submit").addEventListener('click',function(){
+
+
+        document.getElementById("Submit").addEventListener('click', function () {
             //Lets me know what was typed inside of the enter item section
-            value = document.getElementById("task_input").value
-            alert("You typed " + value);
+            const input = document.getElementById("task_input")
+            const value = input.value.trim();
+            //Creates a new li
+            const newItem = document.createElement('li')
+            newItem.innerText = value;
+            //Takes element my id name and stores onto the ul 
+            // Adds a new item to the unordered list
+            document.getElementById("my_list").appendChild(newItem);// adds text content to the list item 
 
-            newItem.appendChild(listItemOutput);// adds text content to the list item  
-            myList.appendChild(newItem); // Adds a new item to the unordered list
+            //Createing a delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Delete';
+            deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
+
+            deleteButton.addEventListener('click', function () {
+                newItem.remove();
+
+            })
+            newItem.appendChild(deleteButton)// puts the delete button next to new item
 
             input.value = '';
         })
-        
-       
-        
+
+
+
     </script>
 
-    
+
 </body>
+
 </html>
