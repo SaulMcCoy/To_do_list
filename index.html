@@ -14,7 +14,6 @@
             <li>Apples</li>
             <li>Milk</li>
             <li>Bread</li>
-            <!-- <button id="Delete">Delete</button> -->
         </ul>
         <!--This will put Enter item inside of the input value -->
         <input id="task_input" placeholder="Enter Item">
@@ -34,22 +33,58 @@
         <button>Submit</button>
     </div>
 
+
     <script>
+        let tasks = [];
 
+        window.addEventListener('load', function () {
+            //Puts back into an array form from local storage 
+            const saved = JSON.parse(localStorage.getItem("tasks"))
+            if (saved) {
+                tasks = saved;
+                saved.forEach(task => {
+                    //Creating a list element
+                    const li = document.createElement("li");
+                    // puts text next to the bullet
+                    li.textContent = task;
 
+                    //Createing a delete button next to the added item in the list. 
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerText = 'Delete';
+                    deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
+
+                    deleteButton.addEventListener('click', function () {
+                        li.remove();
+                        //Delete from local storage. 
+                        tasks = tasks.filter(t => t !== task);
+                        localStorage.setItem("tasks",JSON.stringify(tasks))
+
+                    })
+                    li.appendChild(deleteButton)// puts the delete button next to new item
+
+                    document.getElementById("my_list").appendChild(li);
+
+                });
+            }
+        })
 
         document.getElementById("Submit").addEventListener('click', function () {
             //Lets me know what was typed inside of the enter item section
             const input = document.getElementById("task_input")
             const value = input.value.trim();
+
+            tasks.push(value);
+
+            //Using this to save inside of local storage, strigify places in local storage
+            localStorage.setItem("tasks", JSON.stringify(tasks));
             //Creates a new li
             const newItem = document.createElement('li')
-            newItem.innerText = value;
-            //Takes element my id name and stores onto the ul 
-            // Adds a new item to the unordered list
-            document.getElementById("my_list").appendChild(newItem);// adds text content to the list item 
+            newItem.innerText = value; // The new item will be set to the value
 
-            //Createing a delete button
+            // Adds a new item to the unordered list
+            document.getElementById("my_list").appendChild(newItem);
+
+            //Createing a delete button next to the added item in the list. 
             const deleteButton = document.createElement('button');
             deleteButton.innerText = 'Delete';
             deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
