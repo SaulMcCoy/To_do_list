@@ -1,30 +1,49 @@
 .grocery{
-    background-color: black;
+    background-color: rgb(37, 38, 39);
     color: white;
-    width: 300px; /*How close the dots will be near the words*/
-    border: 20px solid blue;
-    padding: 25px;
-    margin: auto;
+    font-family: 'Courier New', Courier, monospace;
+    width:500px; /*How close the dots will be near the words*/
+    height: 500px;
+    border: 10px solid tan;
+    padding: 5px;
     
 }
 
 
-.games{
-    background-color: black;
-    color:whitesmoke;
-    width: 300px;
-    border: 20px solid red; /*Solid makes is visable and px is the thickness*/
-    padding: 25px;/*How close one object is to another.*/
-    margin: auto; /*How far it is left most a screen, auto centers it.*/
-
-
-}
 
 h1{
-    color: green;
+    color: rgb(252, 252, 252);
+    font-family:'Courier New', Courier, monospace;
+    margin-top: auto;
+    text-decoration: underline tan;
+   
 }
 
-/* li{
-    color: blue;
-} */
+li{
+    color: rgb(249, 249, 249);
+    font-size: 25px;
+}
 
+.delete-image{
+    width: auto;  /* Adjust the width as needed */
+    height: auto;  /* Maintain aspect ratio */
+    border: 2px solid red; /* Add a border */
+    font-family:'Courier New', Courier, monospace;
+}
+
+
+.delete-image:hover{
+    /*Changes the color once you hover over it*/
+    background-color: red;
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+}
+
+#Submit{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#Submit:hover{
+    background-color: rgb(169, 253, 42);
+    font-family:'Courier New', Courier, monospace;
+}

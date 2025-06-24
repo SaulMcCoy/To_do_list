@@ -10,28 +10,14 @@
     <div class="grocery">
         <h1>Todo List</h1>
         <ul id="my_list">
-            <b>Grocery list</b>
             <li>Apples</li>
-            <li>Milk</li>
-            <li>Bread</li>
         </ul>
         <!--This will put Enter item inside of the input value -->
         <input id="task_input" placeholder="Enter Item">
         <button id="Submit">Submit</button>
     </div>
 
-    <div class="games">
-        <h1>Todo List</h1>
-        <ul>
-            <b>Game shopping list</b>
-            <li>Expedition 33</li>
-            <li>Persona 5</li>
-            <li>Elden ring</li>
-        </ul>
-        <!--This will put Enter item inside of the input value -->
-        <input placeholder="Enter Game">
-        <button>Submit</button>
-    </div>
+    
 
 
     <script>
@@ -45,13 +31,14 @@
                 saved.forEach(task => {
                     //Creating a list element
                     const li = document.createElement("li");
-                    // puts text next to the bullet
+                    // puts text next to the bullet element that we created
                     li.textContent = task;
 
-                    //Createing a delete button next to the added item in the list. 
+                    //This delete button will also be saved inside of the local storage.  
                     const deleteButton = document.createElement('button');
                     deleteButton.innerText = 'Delete';
                     deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
+                    deleteButton.classList.add('delete-image');//adds a class for css styling
 
                     deleteButton.addEventListener('click', function () {
                         li.remove();
@@ -88,6 +75,7 @@
             const deleteButton = document.createElement('button');
             deleteButton.innerText = 'Delete';
             deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
+            deleteButton.classList.add('delete-image');//adds a class for css styling
 
             deleteButton.addEventListener('click', function () {
                 newItem.remove();
