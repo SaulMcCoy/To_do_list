@@ -24,11 +24,16 @@ li{
     font-size: 25px;
 }
 
+li::marker{
+    color:rgb(37, 38, 39);
+}
+
 .delete-image{
-    width: auto;  /* Adjust the width as needed */
-    height: auto;  /* Maintain aspect ratio */
+    width: 250x;  /* Adjust the width as needed */
+    height: 30px;  /* Maintain aspect ratio */
     border: 2px solid red; /* Add a border */
     font-family:'Courier New', Courier, monospace;
+    border-radius: 25%;
 }
 
 
@@ -37,9 +42,13 @@ li{
     background-color: red;
     color: white;
     font-family:'Courier New', Courier, monospace;
+
 }
 
 #Submit{
+    width: 65px;
+    height: 30px;
+    border-radius: 25%;
     font-family: 'Courier New', Courier, monospace;
 }
 
