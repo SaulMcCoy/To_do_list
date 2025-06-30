@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
  
+//Taking values from moongoDB
 const todoSchema = new mongoose.Schema({
   task: {
     type: String,
