@@ -17,75 +17,113 @@
         <button id="Submit">Submit</button>
     </div>
 
-    
+
 
 
     <script>
+
         let tasks = [];
 
-        window.addEventListener('load', function () {
-            //Puts back into an array form from local storage 
-            const saved = JSON.parse(localStorage.getItem("tasks"))
-            if (saved) {
-                tasks = saved;
-                saved.forEach(task => {
-                    //Creating a list element
-                    const li = document.createElement("li");
-                    // puts text next to the bullet element that we created
-                    li.textContent = task;
+        // // window.addEventListener('load', function () {
+        //     //Puts back into an array form from local storage 
+        //     const saved = JSON.parse(localStorage.getItem("tasks"))
+        //     if (saved) {
+        //         tasks = saved;
+        //         saved.forEach(task => {
+        //             //Creating a list element
+        //             const li = document.createElement("li");
+        //             // puts text next to the bullet element that we created
+        //             li.textContent = task;
 
-                    //This delete button will also be saved inside of the local storage.  
-                    const deleteButton = document.createElement('button');
-                    deleteButton.innerText = 'Delete';
-                    deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
-                    deleteButton.classList.add('delete-image');//adds a class for css styling
+        //             //This delete button will also be saved inside of the local storage.  
+        //             const deleteButton = document.createElement('button');
+        //             deleteButton.innerText = 'Delete';
+        //             deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
+        //             deleteButton.classList.add('delete-image');//adds a class for css styling
 
-                    deleteButton.addEventListener('click', function () {
-                        li.remove();
-                        //Delete from local storage. 
-                        tasks = tasks.filter(t => t !== task);
-                        localStorage.setItem("tasks",JSON.stringify(tasks))
+        //             deleteButton.addEventListener('click', function () {
+        //                 li.remove();
+        //                 //Delete from local storage. 
+        //                 tasks = tasks.filter(t => t !== task);
+        //                 localStorage.setItem("tasks", JSON.stringify(tasks))
 
-                    })
-                    li.appendChild(deleteButton)// puts the delete button next to new item
+        //             })
+        //             li.appendChild(deleteButton)// puts the delete button next to new item
 
-                    document.getElementById("my_list").appendChild(li);
+        //             document.getElementById("my_list").appendChild(li);
 
-                });
-            }
+        //         });
+        //     }
+        // })
+
+        
+        window.addEventListener('load', async () => {
+            const res = fetch("http://localhost:3000/todos");//fetchs request
+            const todoReponse = await res.json();
+            todoReponse.forEach(todo => addTaskToDOM(todo.task,todo._id))// the _ creates id for us. 
         })
 
-        document.getElementById("Submit").addEventListener('click', function () {
+
+        document.getElementById("Submit").addEventListener('click', async function () {
             //Lets me know what was typed inside of the enter item section
             const input = document.getElementById("task_input")
             const value = input.value.trim();
 
-            tasks.push(value);
+            //tasks.push(value);
 
             //Using this to save inside of local storage, strigify places in local storage
-            localStorage.setItem("tasks", JSON.stringify(tasks));
+            //localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            const res = await fetch("http://localhost:3000/todos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ task: value, completed: false })
+            });
+
+            const saved = await res.json();
+            addTaskToDOM(saved.task, saved._id);
             //Creates a new li
-            const newItem = document.createElement('li')
-            newItem.innerText = value; // The new item will be set to the value
+            //const newItem = document.createElement('li')
+            //newItem.innerText = value; // The new item will be set to the value
 
             // Adds a new item to the unordered list
-            document.getElementById("my_list").appendChild(newItem);
+            //document.getElementById("my_list").appendChild(newItem);
 
             //Createing a delete button next to the added item in the list. 
+            // const deleteButton = document.createElement('button');
+            // deleteButton.innerText = 'Delete';
+            // deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
+            // deleteButton.classList.add('delete-image');//adds a class for css styling
+
+            // deleteButton.addEventListener('click', function () {
+            //     newItem.remove();
+
+            // })
+            //newItem.appendChild(deleteButton)// puts the delete button next to new item
+
+            input.value = '';
+        })
+
+        function addTaskToDOM(task, id) {
+            const li = document.createElement("li");
+            li.textContent = task; //This will be my task. 
+
             const deleteButton = document.createElement('button');
             deleteButton.innerText = 'Delete';
             deleteButton.style.marginLeft = "10px"; //Makes the delete button more presentable
             deleteButton.classList.add('delete-image');//adds a class for css styling
 
-            deleteButton.addEventListener('click', function () {
-                newItem.remove();
 
-            })
-            newItem.appendChild(deleteButton)// puts the delete button next to new item
+            deleteButton.addEventListener("click", async function () {
+                await fetch(`http://localhost:3000/todos/${id}`, {
+                    method: "DELETE"
+                });
+                li.remove();
+            });
 
-            input.value = '';
-        })
-
+            li.appendChild(deleteButton);
+            document.getElementById("my_list").appendChild(li);
+        }
 
 
     </script>

@@ -6,7 +6,8 @@ const app = express();
 app.use(express.json())//Reads things as a json file.
 const PORT = 3000;// local port number 
 const Todo = require('./models/Todo.js');//This is how call the Todo class into main.  
-
+const cors = require('cors');
+app.use(cors());
 
 console.log('Todo is:', Todo);
 
