@@ -58,8 +58,9 @@
 
         
         window.addEventListener('load', async () => {
-            const res = fetch("http://localhost:3000/todos");//fetchs request
+            const res = await fetch("http://localhost:3000/todos");//fetchs request
             const todoReponse = await res.json();
+            console.log("-------------- This is todo response. -------------",todoReponse)
             todoReponse.forEach(todo => addTaskToDOM(todo.task,todo._id))// the _ creates id for us. 
         })
 
