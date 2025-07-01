@@ -17,7 +17,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "concurrently \"nodemon index.js\" \"live-server --open=index.html\""
+    "dev": "concurrently \"nodemon index.js\" \"open http://localhost:3000\""
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "concurrently": "^9.2.0",
-    "live-server": "^1.2.2",
     "nodemon": "^3.1.10"
   }
 }

@@ -4,10 +4,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 app.use(express.json())//Reads things as a json file.
-const PORT = 3000;// local port number 
+const PORT = process.env.PORT || 3000;// local port number 
 const Todo = require('./models/Todo.js');//This is how call the Todo class into main.  
 const cors = require('cors');
+const path = require('path');
 app.use(cors());
+app.use(express.static(path.join(__dirname,'public')));
 
 console.log('Todo is:', Todo);
 
@@ -19,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI)
 //Routes:  
 //If there is nothing after the /
 app.get('/',(req,res)=>{
-    res.send('Hello from the backend. :)')
+    res.sendFile(path.join(__dirname,'public','index.html'));
 })
 
 //This is the backend in async 
