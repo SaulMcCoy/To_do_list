@@ -9,7 +9,7 @@ const Todo = require('./models/Todo.js');//This is how call the Todo class into 
 const cors = require('cors');
 const path = require('path');
 app.use(cors({
-  origin: "https://todo-list-ye8a.onrender.com/"
+  origin: "https://todo-list-ye8a.onrender.com"
 }));
 app.use(express.static(path.join(__dirname,'public')));
 
