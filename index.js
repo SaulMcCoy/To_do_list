@@ -8,7 +8,9 @@ const PORT = process.env.PORT || 3000;// local port number
 const Todo = require('./models/Todo.js');//This is how call the Todo class into main.  
 const cors = require('cors');
 const path = require('path');
-app.use(cors());
+app.use(cors({
+  origin: "https://todo-list-ye8a.onrender.com/"
+}));
 app.use(express.static(path.join(__dirname,'public')));
 
 console.log('Todo is:', Todo);
