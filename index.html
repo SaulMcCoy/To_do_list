@@ -24,7 +24,7 @@
 
         let tasks = [];
 
-        // // window.addEventListener('load', function () {
+        //  window.addEventListener('load', function () {
         //     //Puts back into an array form from local storage 
         //     const saved = JSON.parse(localStorage.getItem("tasks"))
         //     if (saved) {
@@ -74,6 +74,7 @@
             //Using this to save inside of local storage, strigify places in local storage
             //localStorage.setItem("tasks", JSON.stringify(tasks));
 
+            // Connection happing at http://localhost:3000/todos
             const res = await fetch("http://localhost:3000/todos", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

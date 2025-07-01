@@ -17,6 +17,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 //Routes:  
+//If there is nothing after the /
 app.get('/',(req,res)=>{
     res.send('Hello from the backend. :)')
 })
